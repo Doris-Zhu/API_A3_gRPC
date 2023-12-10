@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package reddit;
+
+import "google/protobuf/timestamp.proto";
+
+// CommentState represents the state of a comment.
+enum CommentState {
+  NORMAL = 0;
+  HIDDEN = 1;
+}
+
+// Comment represents a comment made under a post or another comment.
+message Comment {
+  string author = 1;      // Author of the comment.
+  int32 score = 2;        // Score of the comment, can be negative.
+  CommentState state = 3; // State of the comment.
+  google.protobuf.Timestamp publication_date = 4; // Publication date of the comment.
+  string content = 5;     // Content of the comment.
+}

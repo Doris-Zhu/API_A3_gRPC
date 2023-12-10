@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package reddit;
+
+// User represents a user with a human-readable ID.
+message User {
+  string user_id = 1; // A unique, human-readable user ID.
+}

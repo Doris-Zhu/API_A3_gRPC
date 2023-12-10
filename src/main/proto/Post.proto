@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package reddit;
+
+import "google/protobuf/timestamp.proto";
+
+// PostState represents the state of a post.
+enum PostState {
+  NORMAL = 0;
+  LOCKED = 1;
+  HIDDEN = 2; // Another word for deleted.
+}
+
+// Post represents a post with various attributes.
+message Post {
+  string title = 1;       // Title of the post.
+  string text = 2;        // Text content of the post.
+  string author = 3;      // Author is optional.
+  int32 score = 4;        // Score of the post, can be negative.
+  PostState state = 5;    // State of the post.
+  google.protobuf.Timestamp publication_date = 6; // Publication date of the post.
+  oneof media {
+    string video_url = 7;
+    string image_url = 8;
+  }
+}
