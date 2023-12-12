@@ -75,7 +75,6 @@ message GetTopCommentsRequest {
 
 message TopCommentsResponse {
   repeated Comment comments = 1;
-  // Additional fields as necessary
 }
 
 message ExpandCommentBranchRequest {
@@ -85,7 +84,6 @@ message ExpandCommentBranchRequest {
 
 message CommentBranchResponse {
   repeated Comment comments = 1;
-  // Additional fields as necessary
 }
 
  message MonitorUpdatesRequest {
