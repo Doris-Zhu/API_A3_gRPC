@@ -30,8 +30,8 @@ service RedditService {
   // Expand a comment branch
   rpc ExpandCommentBranch(ExpandCommentBranchRequest) returns (CommentBranchResponse);
 
-  // Monitor updates (Extra Credit)
-  // rpc MonitorUpdates(MonitorUpdatesRequest) returns (stream UpdateResponse);
+   //Monitor updates (Extra Credit)
+  rpc MonitorUpdates(MonitorUpdatesRequest) returns (stream UpdateResponse);
 }
 
 // Request and Response messages
@@ -88,13 +88,12 @@ message CommentBranchResponse {
   // Additional fields as necessary
 }
 
-// message MonitorUpdatesRequest {
-//   string post_id = 1;
-//   repeated string comment_ids = 2;
-// }
+ message MonitorUpdatesRequest {
+   string post_id = 1;
+   repeated string comment_ids = 2;
+ }
 
-// message UpdateResponse {
-//   string id = 1; // Post or Comment ID
-//   int32 new_score = 2;
-//   // Additional fields as necessary
-// }
+ message UpdateResponse {
+   string id = 1; // Post or Comment ID
+   int32 new_score = 2;
+ }
