@@ -121,7 +121,23 @@ class TestReddit(unittest.TestCase):
         # Test when API is accessible
         post, top_comment, branch = retrieve_and_expand_post(self.mock_client, "2")
         self.assertIsNotNone(post)
-        print(post, top_comment, branch)
+        self.assertEqual(post.title, "Title 2")
+        self.assertEqual(post.text, "Text 2")
+
+        self.assertIsNotNone(top_comment)
+        self.assertEqual(top_comment.comment_id, "1")
+        self.assertEqual(top_comment.author, "Author 1")
+
+        self.assertIsNotNone(branch)
+        self.assertEqual(len(branch.comments), 2)
+
+        first_reply = branch.comments[0]
+        self.assertEqual(first_reply.comment_id, "3")
+        self.assertEqual(first_reply.author, "Author 3")
+
+        second_reply = branch.comments[1]
+        self.assertEqual(second_reply.comment_id, "4")
+        self.assertEqual(second_reply.author, "Author 4")
        
 if __name__ == '__main__':
     unittest.main()
