@@ -6,9 +6,9 @@ import "google/protobuf/timestamp.proto";
 
 // PostState represents the state of a post.
 enum PostState {
-  NORMAL = 0;
-  LOCKED = 1;
-  HIDDEN = 2; // Another word for deleted.
+  PNORMAL = 0;
+  PLOCKED = 1;
+  PHIDDEN = 2; // Another word for deleted.
 }
 
 // Post represents a post with various attributes.

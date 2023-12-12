@@ -13,7 +13,7 @@ service RedditService {
   rpc CreatePost(CreatePostRequest) returns (Post);
 
   // Upvote or Downvote a Post
-  rpc VotePost(VotePostRequest) returns (google.protobuf.Empty);
+  rpc VotePost(VotePostRequest) returns (Post);
 
   // Retrieve Post Content
   rpc GetPost(GetPostRequest) returns (Post);
@@ -22,7 +22,7 @@ service RedditService {
   rpc CreateComment(CreateCommentRequest) returns (Comment);
 
   // Upvote or Downvote a Comment
-  rpc VoteComment(VoteCommentRequest) returns (google.protobuf.Empty);
+  rpc VoteComment(VoteCommentRequest) returns (Comment);
 
   // Retrieve a list of N most upvoted comments under a post
   rpc GetTopComments(GetTopCommentsRequest) returns (TopCommentsResponse);
@@ -31,7 +31,7 @@ service RedditService {
   rpc ExpandCommentBranch(ExpandCommentBranchRequest) returns (CommentBranchResponse);
 
   // Monitor updates (Extra Credit)
-  rpc MonitorUpdates(MonitorUpdatesRequest) returns (stream UpdateResponse);
+  // rpc MonitorUpdates(MonitorUpdatesRequest) returns (stream UpdateResponse);
 }
 
 // Request and Response messages
@@ -56,9 +56,11 @@ message GetPostRequest {
 }
 
 message CreateCommentRequest {
-  string post_id = 1;
-  string text = 2;
-  // Other fields as necessary
+  string comment_id = 1;
+  string post_id = 2;
+  string parent_comment_id = 3;
+  string text = 4;
+  string author = 5;
 }
 
 message VoteCommentRequest {
@@ -86,13 +88,13 @@ message CommentBranchResponse {
   // Additional fields as necessary
 }
 
-message MonitorUpdatesRequest {
-  string post_id = 1;
-  repeated string comment_ids = 2;
-}
+// message MonitorUpdatesRequest {
+//   string post_id = 1;
+//   repeated string comment_ids = 2;
+// }
 
-message UpdateResponse {
-  string id = 1; // Post or Comment ID
-  int32 new_score = 2;
-  // Additional fields as necessary
-}
+// message UpdateResponse {
+//   string id = 1; // Post or Comment ID
+//   int32 new_score = 2;
+//   // Additional fields as necessary
+// }
